@@ -1,6 +1,6 @@
 # Blinkee
 
-TODO: Write a gem description
+Like Blinky.
 
 ## Installation
 

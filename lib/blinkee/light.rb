@@ -33,22 +33,10 @@ module Blinkee
 
       def handle
         @handle ||= begin
-         handle = device.open
-
-         # begin
-         #   # ruby-usb bug: the arity of rusb_detach_kernel_driver_np isn't defined correctly, it should only accept a single argument.
-         #   if USB::DevHandle.instance_method(:usb_detach_kernel_driver_np).arity == 2
-         #     handle.usb_detach_kernel_driver_np(0, 0)
-         #   else
-         #     handle.usb_detach_kernel_driver_np(0)
-         #   end
-         # rescue Errno::ENODATA => e
-         #   # Already detached
-         # end
-
-         handle.set_configuration(device.configurations.first)
-         handle.claim_interface(0)
-         handle
+          device.open.tap do |h|
+            h.set_configuration(device.configurations.first)
+            h.claim_interface(0)
+          end
         end
       end
 
