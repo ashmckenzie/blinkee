@@ -24,7 +24,7 @@ module Blinkee
     end
 
     def off!
-      change_color(0xFF)
+      change_color(Colors::OFF)
     end
 
     private
@@ -32,7 +32,7 @@ module Blinkee
       attr_reader :device
 
       def change_color color
-        device.handle.usb_control_msg(0xc8, 0x12, 0x020a, color, "", 0)
+        device.handle.usb_control_msg(0x21, 0x09, 0x0635, 0x000, "\x65\x0C#{color}\xFF\x00\x00\x00\x00", 0)
       end
   end
 end
