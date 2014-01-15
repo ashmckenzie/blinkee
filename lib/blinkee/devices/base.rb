@@ -34,9 +34,13 @@ module Blinkee
       private
 
         def find_device!
-          USB.devices.find do |device|
-            device.idVendor == VENDOR_ID && device.idProduct == PRODUCT_ID
+          device = USB.devices.find do |device|
+            device.idVendor == self.class::VENDOR_ID && device.idProduct == self.class::PRODUCT_ID
           end
+
+          raise "Cannot find a #{self.class}" unless device
+
+          device
         end
     end
   end

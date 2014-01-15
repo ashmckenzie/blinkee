@@ -1,4 +1,4 @@
-require './colors'
+require 'blinkee/colors'
 
 module Blinkee
   class Light
@@ -32,7 +32,7 @@ module Blinkee
       attr_reader :device
 
       def change_color color
-        device.handle.usb_control_msg(0xc8, 0x12, 0x020a, colour, "", 0)
+        device.handle.usb_control_msg(0xc8, 0x12, 0x020a, color, "", 0)
       end
   end
 end

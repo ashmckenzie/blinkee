@@ -1,22 +1,34 @@
 require 'blinkee/version'
 require 'blinkee/devices/factory'
+require 'blinkee/light'
 
-class Blinkee
+module Blinkee
 
-  extend self
-
-  def initialize light_model=nil
-    @light_model = light_model
+  def self.new model=nil
+    Blinkee.new(model)
   end
 
-  def light
-    @light ||= begin
-      Factory.for(light_model)
+  class Blinkee
+
+    def initialize model=nil
+      @model = model
     end
+
+    def light
+      @light ||= begin
+        Light.new(device)
+      end
+    end
+
+    def device
+      @device ||= begin
+        Devices::Factory.for(model)
+      end
+    end
+
+    private
+
+      attr_reader :model
   end
-
-  private
-
-    attr_reader :light_model
 
 end

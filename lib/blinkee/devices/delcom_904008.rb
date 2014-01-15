@@ -1,4 +1,4 @@
-require './base'
+require 'blinkee/devices/base'
 
 module Blinkee
   module Devices

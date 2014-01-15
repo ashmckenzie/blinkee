@@ -1,20 +1,19 @@
-require './delcom_904008'
-require './light'
+require 'blinkee/devices/delcom_904008'
 
 module Blinkee
   module Devices
     class Factory
 
-      def self.for light_model
-        unless light_model
+      def self.for model
+        unless model
           raise 'Not implemented yet'
         end
 
-        Light.new(model_klass_for(model).new)
+        model_klass_for(model).new
       end
 
       def self.model_klass_for model
-        model.split('_').map { |x| x.capitalize }.join('')
+        Devices.const_get(model.split('_').map { |x| x.capitalize }.join(''))
       end
     end
   end
