@@ -1,6 +1,6 @@
 require 'usb'
 
-Dir[File.join('./lib', 'blinkee', 'device_types', '*')].each { |f| require(f) }
+Dir[File.expand_path(File.join('..', 'device_types', '*'), __FILE__)].each { |f| require(f) }
 
 module Blinkee
   class Discover
