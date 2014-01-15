@@ -1,5 +1,5 @@
 require 'blinkee/version'
-require 'blinkee/devices/factory'
+require 'blinkee/discover'
 require 'blinkee/light'
 
 module Blinkee
@@ -22,7 +22,7 @@ module Blinkee
 
     def device
       @device ||= begin
-        Devices::Factory.for(model)
+        Discover.new(model).find
       end
     end
 

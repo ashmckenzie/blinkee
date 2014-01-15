@@ -1,8 +1,6 @@
-require 'blinkee/devices/base'
-
 module Blinkee
-  module Devices
-    class Delcom904008 < Base
+  module DeviceTypes
+    class Delcom904008
 
       VENDOR_ID   = 0x0fc5
       PRODUCT_ID  = 0xb080
