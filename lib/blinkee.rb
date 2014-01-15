@@ -4,14 +4,14 @@ require 'blinkee/light'
 
 module Blinkee
 
-  def self.new model=nil
-    Blinkee.new(model)
+  def self.new device_type=nil
+    Blinkee.new(device_type)
   end
 
   class Blinkee
 
-    def initialize model=nil
-      @model = model
+    def initialize device_type=nil
+      @device_type = device_type
     end
 
     def light
@@ -22,13 +22,13 @@ module Blinkee
 
     def device
       @device ||= begin
-        Discover.new(model).find
+        Discover.new(device_type).find
       end
     end
 
     private
 
-      attr_reader :model
+      attr_reader :device_type
   end
 
 end
